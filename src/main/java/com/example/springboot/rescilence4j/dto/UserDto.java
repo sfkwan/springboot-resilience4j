@@ -1,7 +1,5 @@
 package com.example.springboot.rescilence4j.dto;
 
-import java.util.UUID;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
