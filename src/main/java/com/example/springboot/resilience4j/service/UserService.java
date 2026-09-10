@@ -1,11 +1,11 @@
-package com.example.springboot.rescilence4j.service;
+package com.example.springboot.resilience4j.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.example.springboot.rescilence4j.entity.User;
-import com.example.springboot.rescilence4j.repository.UserRepository;
+import com.example.springboot.resilience4j.entity.User;
+import com.example.springboot.resilience4j.repository.UserRepository;
 
 import java.util.UUID;
 

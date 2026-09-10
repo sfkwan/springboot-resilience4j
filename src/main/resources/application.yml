@@ -1,0 +1,68 @@
+# Conversion to YAML from Properties formar report
+# Warnings:
+# - Multiple values [java.io.IOException, org.springframework.web.client.ResourceAccessException, com.example.demo.exception.BusinessException] assigned to '-'. Values are merged into a yaml sequence node.
+spring:
+  application:
+    name: rescilence4j
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo_db
+    username: root
+    password: secret
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,circuitbreakers,ratelimiters,retries,bulkheads
+  endpoint:
+    health:
+      show-details: always
+resilience4j:
+  retry:
+
+    configs:
+      default:
+        max-attempts: 3             # 1 initial call + 2 retries
+        wait-duration: 500ms        # wait between attempts
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+        retry-exceptions:
+          - java.io.IOException
+          - org.springframework.web.client.ResourceAccessException
+          - com.example.springboot.resilience4j.exception.DownstreamPricingException
+        # ignore-exceptions:
+        #   - com.example.demo.exception.BusinessException
+    instances:
+      priceService:
+        base-config: default
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 2s
+        cancel-running-future: true
+    instances:
+      priceService:
+        base-config: default
+  circuitbreaker:
+
+    configs:
+      default:
+        sliding-window-type: COUNT_BASED
+        sliding-window-size: 20            # number of calls to measure
+        minimum-number-of-calls: 10
+        failure-rate-threshold: 50         # percentage
+        wait-duration-in-open-state: 10s   # how long circuit stays OPEN
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+        record-exceptions:
+          - java.io.IOException
+          - org.springframework.web.client.HttpServerErrorException
+          - org.springframework.web.client.ResourceAccessException
+        # ignore-exceptions:
+        #   - com.example.demo.exception.BusinessException
+    instances:
+      priceService:
+        base-config: default

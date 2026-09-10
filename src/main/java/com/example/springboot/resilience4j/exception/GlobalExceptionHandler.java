@@ -1,4 +1,4 @@
-package com.example.springboot.rescilence4j.exception;
+package com.example.springboot.resilience4j.exception;
 
 import java.util.HashMap;
 import java.util.Map;

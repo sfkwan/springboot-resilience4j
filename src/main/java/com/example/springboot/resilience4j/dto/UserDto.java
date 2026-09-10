@@ -1,4 +1,4 @@
-package com.example.springboot.rescilence4j.dto;
+package com.example.springboot.resilience4j.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -1,4 +1,4 @@
-package com.example.springboot.rescilence4j.dto;
+package com.example.springboot.resilience4j.dto;
 
 import java.util.UUID;
 

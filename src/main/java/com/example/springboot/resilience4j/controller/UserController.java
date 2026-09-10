@@ -1,4 +1,4 @@
-package com.example.springboot.rescilence4j.controller;
+package com.example.springboot.resilience4j.controller;
 
 import java.util.UUID;
 
@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.validation.annotation.Validated;
 
-import com.example.springboot.rescilence4j.entity.User;
-import com.example.springboot.rescilence4j.dto.UserDto;
-import com.example.springboot.rescilence4j.dto.UserResponse;
-import com.example.springboot.rescilence4j.service.UserService;
+import com.example.springboot.resilience4j.dto.UserDto;
+import com.example.springboot.resilience4j.dto.UserResponse;
+import com.example.springboot.resilience4j.entity.User;
+import com.example.springboot.resilience4j.service.UserService;
+
+import org.springframework.validation.annotation.Validated;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;

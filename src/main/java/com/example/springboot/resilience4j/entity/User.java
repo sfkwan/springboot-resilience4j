@@ -1,4 +1,4 @@
-package com.example.springboot.rescilence4j.entity;
+package com.example.springboot.resilience4j.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

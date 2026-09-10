@@ -1,4 +1,4 @@
-package com.example.springboot.rescilence4j;
+package com.example.springboot.resilience4j;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
