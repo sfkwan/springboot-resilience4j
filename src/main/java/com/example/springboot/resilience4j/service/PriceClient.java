@@ -26,14 +26,14 @@ public class PriceClient {
         this.restTemplate = restTemplate;
     }
 
-    @Retry(name = "priceService", fallbackMethod = "getPriceFallback")
+    @Retry(name = "priceService")
     @CircuitBreaker(name = "priceService", fallbackMethod = "getPriceFallback")
     public PriceResponse getPrice(Long productId) {
 
         String url = pricingServiceBaseUrl + "/api/prices/" + productId;
 
         ResponseEntity<PriceResponse> response = restTemplate.getForEntity(url, PriceResponse.class);
-        log.warn("getPrice has been called with {}", productId);
+        // log.warn("getPrice has been called with {}", productId);
         return response.getBody();
     }
 

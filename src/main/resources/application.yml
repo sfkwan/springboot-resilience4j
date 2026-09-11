@@ -8,6 +8,16 @@ spring:
     url: jdbc:mysql://localhost:3306/demo_db
     username: root
     password: secret
+    hikari:
+      maximum-pool-size: 50
+      minimum-idle: 30
+      
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      keepalive-time: 300000
+      auto-commit: true
+      pool-name: prkwanHikariCP
   jpa:
     hibernate:
       ddl-auto: update
@@ -31,10 +41,10 @@ resilience4j:
         wait-duration: 500ms        # wait between attempts
         enable-exponential-backoff: true
         exponential-backoff-multiplier: 2
-        retry-exceptions:
-          - java.io.IOException
-          - org.springframework.web.client.ResourceAccessException
-          - com.example.springboot.resilience4j.exception.DownstreamPricingException
+        # retry-exceptions:
+        #   - java.io.IOException
+        #   - org.springframework.web.client.ResourceAccessException
+        #   - com.example.springboot.resilience4j.exception.DownstreamPricingException
         # ignore-exceptions:
         #   - com.example.demo.exception.BusinessException
     instances:
@@ -58,7 +68,7 @@ resilience4j:
         sliding-window-size: 20            # number of calls to measure
         minimum-number-of-calls: 10
         failure-rate-threshold: 50         # percentage
-        wait-duration-in-open-state: 10s   # how long circuit stays OPEN
+        wait-duration-in-open-state: 30s   # how long circuit stays OPEN
         permitted-number-of-calls-in-half-open-state: 3
         automatic-transition-from-open-to-half-open-enabled: true
         record-exceptions:

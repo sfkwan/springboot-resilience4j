@@ -1,0 +1,18 @@
+{
+  "id": null,
+  "title": "Prometheus Sample Dashboard",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Prometheus Uptime",
+      "targets": [
+        {
+          "expr": "up",
+          "legendFormat": "{{instance}}"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 36,
+  "version": 1
+}
