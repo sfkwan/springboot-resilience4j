@@ -7,15 +7,14 @@ import org.springframework.stereotype.Service;
 import com.example.springboot.resilience4j.entity.User;
 import com.example.springboot.resilience4j.repository.UserRepository;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.UUID;
 
+@RequiredArgsConstructor
 @Service
 public class UserService {
     private final UserRepository repo;
-
-    public UserService(UserRepository repo) {
-        this.repo = repo;
-    }
 
     public Page<User> getAllUsers(Pageable pageable) {
         return repo.findAll(pageable);

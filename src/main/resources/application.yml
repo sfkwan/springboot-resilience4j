@@ -3,7 +3,8 @@
 # - Multiple values [java.io.IOException, org.springframework.web.client.ResourceAccessException, com.example.demo.exception.BusinessException] assigned to '-'. Values are merged into a yaml sequence node.
 spring:
   application:
-    name: rescilence4j
+    name: resilence4j
+
   datasource:
     url: jdbc:mysql://localhost:3306/demo_db
     username: root
@@ -22,6 +23,29 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+logging:
+  level:
+    "[org.zalando.logbook]": TRACE
+  structured:
+    format:
+      console: ecs
+
+logbook:
+  predicate:
+    include:
+      - path: "/**"
+
+  obfuscate:
+    headers:
+      - authorization            # Mask Authorization header
+      - Cookie                   # Mask Cookie header
+      - testheader
+    parameters:
+      - password                 # Mask query/form parameters
+      - token                    # Mask token parameters
+    json-body-fields:
+      - password
+      - secret
 management:
   endpoints:
     web:

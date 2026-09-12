@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springboot.resilience4j.dto.PriceResponse;
-import com.example.springboot.resilience4j.service.PriceClient;
+import com.example.springboot.resilience4j.service.PriceService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,10 +15,10 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/products")
 public class ProductController {
 
-    private final PriceClient priceClient;
+    private final PriceService priceService;
 
     @GetMapping("/{id}/price")
     public PriceResponse getProductPrice(@PathVariable Long id) {
-        return priceClient.getPrice(id);
+        return priceService.getPrice(id);
     }
 }

@@ -1,10 +1,10 @@
-package com.example.springboot.rescilence4j;
+package com.example.springboot.resilence4j;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Rescilence4jApplicationTests {
+class Resilence4jApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -11,20 +11,18 @@ import com.example.springboot.resilience4j.dto.PriceResponse;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+@RequiredArgsConstructor
 @Service
 @Slf4j
-public class PriceClient {
+public class PriceService {
 
     private final RestTemplate restTemplate;
 
     @Value("${pricing-service.base-url:http://localhost:8080}")
     private String pricingServiceBaseUrl;
-
-    public PriceClient(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 
     @Retry(name = "priceService")
     @CircuitBreaker(name = "priceService", fallbackMethod = "getPriceFallback")
@@ -33,7 +31,6 @@ public class PriceClient {
         String url = pricingServiceBaseUrl + "/api/prices/" + productId;
 
         ResponseEntity<PriceResponse> response = restTemplate.getForEntity(url, PriceResponse.class);
-        // log.warn("getPrice has been called with {}", productId);
         return response.getBody();
     }
 
