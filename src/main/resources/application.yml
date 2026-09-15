@@ -24,6 +24,9 @@ spring:
       ddl-auto: update
     show-sql: true
 logging:
+  file:
+    name: logs/resilience4j.log
+  
   level:
     "[org.zalando.logbook]": TRACE
   structured:
