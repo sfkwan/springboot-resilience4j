@@ -34,16 +34,16 @@ public class FakePricingController {
         log.warn("FakePricingController.getPrice has been called with {}", id);
         int value = random.nextInt(20);
 
-        // if (value < 2) {
-        // // 30% of the time: simulate slow response
-        // try {
-        // Thread.sleep(500);
-        // } catch (InterruptedException exception) {
-        // Thread.currentThread().interrupt();
-        // throw new DownstreamPricingException("Pricing request was interrupted",
-        // exception);
-        // }
-        // }
+        if (value < 2) {
+            // 30% of the time: simulate slow response
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException exception) {
+                // Thread.currentThread().interrupt();
+                throw new DownstreamPricingException("Pricing request was interrupted",
+                        exception);
+            }
+        }
 
         if (value > 5) {
             // 20% of the time: simulate failure
