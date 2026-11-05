@@ -1,6 +1,10 @@
 # Conversion to YAML from Properties formar report
 # Warnings:
 # - Multiple values [java.io.IOException, org.springframework.web.client.ResourceAccessException, com.example.demo.exception.BusinessException] assigned to '-'. Values are merged into a yaml sequence node.
+app:
+  cors:
+    allowed-origins: https://www.prkwan.com
+
 spring:
   application:
     name: resilence4j
